@@ -1,6 +1,9 @@
-{% extends 'pages/layout.html'%}
-{% load static %}
-{% block styles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
    <style>
       *{
          margin: 0;
@@ -23,8 +26,8 @@
          background: #fff;
       }
    </style>
-{% endblock %}
-{% block content %}
+</head>
+<body style="font-family:  Century Gothic;">
    <header style="height: 100vh; 
         background: url(https://esda.imfast.io/img/thankyou.jpg);
         background-size: cover;
@@ -33,4 +36,9 @@
       <a class="hbtn" href="{% url 'pages:landing-page' %}">HOME</a>
 
    </header> 
-{% endblock %}
+
+</body>
+</html>
+  
+
+   

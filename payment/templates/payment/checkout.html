@@ -1,5 +1,9 @@
-{% load static %}
-{%block styles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate</title>
   <style>
     body{
       background-image: url(https://esda.imfast.io/img/donate.jpg);
@@ -87,9 +91,9 @@
          background: #fff;
       }
   </style>
-{% endblock %}
-{% block content%}
-<a class="hbtn" href="{% url 'pages:landing-page' %}">HOME</a>
+</head>
+<body>
+  <a class="hbtn" href="{% url 'pages:landing-page' %}">HOME</a>
 
 <form >
   <div id="form-content">
@@ -151,5 +155,6 @@
     handler.openIframe();
   }
 </script>
- {% endblock %}
-  
+</body>
+</html>  
+
