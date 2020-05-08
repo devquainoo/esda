@@ -2,10 +2,35 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # from pypaystack import Transaction, Customer, Plan
 from django.conf import settings
-# import braintree
 
 # Create your views here.
 
+
+# checkout
+def charge(request):
+    return render(request, 'payment/checkout.html')
+
+# verifying transaction
+def verify(request, reference):
+    # transaction = Transaction(settings.SK_KEY)
+    # response = transaction.verify(reference)
+    # if response[3]['status'] == 'success':
+    return render(request,'pages/success.html',{'reference':reference})
+    # else:
+        # return HttpResponse('failed')
+    # return HttpResponse(response)
+
+
+
+
+
+
+
+
+
+
+
+# import braintree
 # paypal
 # gateway = braintree.BraintreeGateway(access_token='access_token$sandbox$cf2szyscwgfnhpj6$9bead1b8aecff6549481c2e7b7f31356')
 # def client_token(request):
@@ -44,16 +69,3 @@ from django.conf import settings
 # 	    return HttpResponse(f'{result.transaction.id} succesful')
 # 	else:
 # 		return HttpResponse('failed')
-
-# paystack
-def charge(request):
-    return render(request, 'payment/checkout.html')
-
-def verify(request, reference):
-    # transaction = Transaction(settings.SK_KEY)
-    # response = transaction.verify(reference)
-    # if response[3]['status'] == 'success':
-    return render(request,'pages/success.html',{'reference':reference})
-    # else:
-        # return HttpResponse('failed')
-    # return HttpResponse(response)
