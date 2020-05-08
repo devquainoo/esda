@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # from pypaystack import Transaction, Customer, Plan
 from django.conf import settings
-import braintree
+# import braintree
 
 # Create your views here.
 
