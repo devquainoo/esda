@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate</title>
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    body{
+      background-image: url(https://esda.imfast.io/img/donate.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      box-sizing: border-box;
+      }
+      form{
+        
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        overflow: hidden;
+        width: 50%;
+        padding: 20px;
+        text-align: center;
+    }
+    #form-content{
+      background-color: #22283156;
+      border-radius: 20px;
+      width: 80%;
+      margin: auto;
+      padding-top: 10px;
+    }
+    #form-content label{
+      display: block;
+      font-size: 20px;
+    }
+    .inp-div{
+      /*width: 100%;*/
+      margin: auto;
+      padding: 10px;
+    }
+    input[type="text"]{
+      color: #d8ebb5a6;
+      text-align: left;
+      padding: 10px;
+      width: 100%;
+      outline: none;
+      border: none;
+      background: none;
+      font-size: 16px;
+      border-left: 1px solid #d8ebb5a6;
+      border-right: 1px solid #d8ebb5a6;
+      border-bottom: 1px solid #d8ebb5a6;
+
+
+    }
+    input[type="text"]::placeholder{
+      color: #d8ebb5a9;
+      text-align: left;
+    }
+    input[type="text"]:active{
+      background: transparent;
+    }
+    .btn{
+      font-size: 18px;
+      cursor: pointer;
+      background: #06623b;
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      padding: 10px 20px;
+      border: 1px solid rgba(53, 93, 68, 0.431);
+      border-radius: 10px;
+      color: cornsilk;
+      
+    }
+    .hbtn{
+         text-decoration: none;
+         padding: 30px;
+         position: absolute;
+         /*top: 10%;*/
+         left: 50%;
+         transform: translate(-50%);
+         border: 1px solid #fff;
+         transition: 0.7s ease;
+         color: #fff;
+      }
+      a:hover{
+         color: #000;
+         background: #fff;
+      }
+  </style>
+</head>
+<body>
+  <a class="hbtn" href="{% url 'pages:landing-page' %}">HOME</a>
+
+<form class="container">
+  <div id="form-content" class="row">
+    <div class="col-sm-12 col-md-6 inp-div">
+        <input type="text" id="amount" placeholder="amount eg. 100" required>
+    </div>
+    <div class="col-sm-12 col-md-6 inp-div">
+        <input type="text" id="email" placeholder="email address" required>
+    </div>
+    <div class="col-sm-12 col-md-6 inp-div">
+        <input type="text" id="full-name" placeholder="Full Name">
+    </div>
+    <div class="col-sm-12 col-md-6 inp-div">
+        <input type="text" id="mobile-number" placeholder="Phone Number">
+    </div>
+
+    <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+    <div class="col-sm-12 col-md-6 inp-div">
+      <button class="btn" type="button" onClick="payWithRave()">donate</button>
+    </div>
+</form>
+
+<script>
+    const API_publicKey = "FLWPUBK-6dd64487b13a73be2f4908c2d97a5264-X";
+
+    function payWithRave() {
+        var amount = document.getElementById("amount").value;
+        var email = document.getElementById("email").value;
+        var fullname = document.getElementById("full-name").value;
+        var mobile_number = document.getElementById("mobile-number").value;
+
+        var x = getpaidSetup({
+            PBFPubKey: API_publicKey,
+            customer_email: email,
+            amount: amount,
+            customer_phone: mobile_number,
+            currency: "USD",
+            txref: "rave-123456",
+            meta: [{
+                metaname: "flightID",
+                metavalue: "AP1234"
+            }],
+            onclose: function() {},
+            callback: function(response) {
+                var txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
+                console.log("This is the response returned after a charge", response);
+                if (
+                    response.data.chargeResponseCode == "00" ||
+                    response.data.chargeResponseCode == "0"
+                ) {
+                    // redirect to a success page
+                  window.location =" {% url 'payment:rave-charge' %}" ;
+                  alert('well done');
+                } else {
+                    // redirect to a failure page.
+                    alert('failed');
+                }
+
+                x.close(); // use this to close the modal immediately after payment.
+            }
+        });
+    }
+</script>
+ 
+
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+</html>  
+

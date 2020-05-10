@@ -20,6 +20,8 @@ def verify(request, reference):
         # return HttpResponse('failed')
     # return HttpResponse(response)
 
+def flutterwave_rave_charge(request):
+	return render(request,'payment/rave_checkout.html')
 
 
 
