@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # from pypaystack import Transaction, Customer, Plan
 from django.conf import settings
+# rave
+# import unirest #unirest is an http library
+import json
 
 # Create your views here.
-
 
 # checkout
 def charge(request):
@@ -20,10 +22,31 @@ def verify(request, reference):
         # return HttpResponse('failed')
     # return HttpResponse(response)
 
+# rave
 def flutterwave_rave_charge(request):
 	return render(request,'payment/rave_checkout.html')
 
+#function called after your request gets a response from rave's server
+def verify_rave(request,response):
+    pass
+	# data = {
+	# 	"txref": "MC-1520443531487", #this is the reference from the payment button response after customer paid.
+	# 	"SECKEY": "FLWSECK-9b4a9495dc795802ed64644c08357494-X" #this is the secret key of the pay button generated
+	# 	}
+ #    #confirm that the response for the transaction is successful
+ #    if response.body['data']['status'] == 'success':
+ #      #confirm that the amount for that transaction is the amount you wanted to charge
+ #        if response.body['data']['chargecode'] == '00':
+        
+ #            if response.body['data']['amount'] == 2000:
+ #                print("Payment successful then give value")
+      
 
+	# #this is the url of the staging server. Please make sure to change to that of production server when you are ready to go live.
+	# url = "https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/v2/verify"
+
+	# #make the http post request to our server with the parameters
+	# thread = unirest.post(url, headers={"Content-Type":"application/json"}, params=data, callback=callback_function)
 
 
 

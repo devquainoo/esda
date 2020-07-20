@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a*v#sty5py2-fn&fiz#6!3!7k(-qpov%gb_cozt7x6906@-(j2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['esdafundraiser.herokuapp.com','www.esdafundraiser.space','esdafundraiser.space','www.esdafundraiser.com','localhost','127.0.0.1',]
 
