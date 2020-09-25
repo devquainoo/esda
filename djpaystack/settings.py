@@ -25,7 +25,7 @@ SECRET_KEY = 'a*v#sty5py2-fn&fiz#6!3!7k(-qpov%gb_cozt7x6906@-(j2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['esdafundraiser.herokuapp.com','www.esdafundraiser.space','esdafundraiser.space','www.esdafundraiser.com','localhost','127.0.0.1',]
+ALLOWED_HOSTS = ['esdacharity.herokuapp.com','esdafundraiser.herokuapp.com','www.esdafundraiser.space','esdafundraiser.space','www.esdafundraiser.com','localhost','127.0.0.1',]
 
 # paystack keys
 SK_KEY = "sk_test_3cec14634cf75d908e36609c50901fef18a8f538"
